@@ -1,0 +1,20 @@
+{
+  "author": "Taylor Fausak <taylor@fausak.me>",
+  "build": {
+    "appId": "gg.gizmo.uploader"
+  },
+  "description": "Rocket League replay uploader",
+  "devDependencies": {
+    "electron": "1.4.15",
+    "electron-builder": "14.3.0",
+    "eslint": "3.16.1"
+  },
+  "license": "MIT",
+  "name": "gizmo-gg-uploader",
+  "scripts": {
+    "build": "build",
+    "electron": "electron",
+    "eslint": "eslint"
+  },
+  "version": "0.0.0"
+}
