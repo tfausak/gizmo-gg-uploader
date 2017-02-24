@@ -1,0 +1,11 @@
+build: off
+cache:
+- node_modules
+install:
+- ps: Install-Product node 7 x64
+- npm install
+platform: x64
+test_script:
+- npm run eslint .
+- npm run build
+version: '{build}'
