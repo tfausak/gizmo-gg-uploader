@@ -1,7 +1,13 @@
 {
   "author": "Taylor Fausak <taylor@fausak.me>",
   "build": {
-    "appId": "gg.gizmo.uploader"
+    "appId": "gg.gizmo.uploader",
+    "publish": [
+      {
+        "provider": "github",
+        "vPrefixedTagName": false
+      }
+    ]
   },
   "description": "Rocket League replay uploader",
   "devDependencies": {
@@ -11,6 +17,10 @@
   },
   "license": "MIT",
   "name": "gizmo-gg-uploader",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tfausak/gizmo-gg-uploader"
+  },
   "scripts": {
     "build": "build",
     "electron": "electron",

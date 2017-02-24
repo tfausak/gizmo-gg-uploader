@@ -1,6 +1,9 @@
 build: off
 cache:
 - node_modules
+environment:
+  GH_TOKEN:
+    secure: Q2LU15Mkkftb3/c1tXv3OGN0cjnBpnoO70PKG3toA5F8+msYmGYNF/R+42GZ5jdl
 install:
 - ps: Install-Product node 7 x64
 - npm install
