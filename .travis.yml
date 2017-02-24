@@ -1,0 +1,20 @@
+addons:
+  apt:
+    packages:
+    - graphicsmagick
+    - icnsutils
+    - xz-utils
+cache:
+  directories:
+  - node_modules
+env:
+  secure: hKPDCxmsW0W0rO+RSl7LxkuA1B5X3Jk6jNA/cKSfmdYJliuuRR+OuBWqFiJQ2b53pp4gSOeumweqz/v0LebKA5TkmJhUAubXg4lM4w8HpTR+L/aGDfGOJEAu8Rc0+FMGuRS9ZHF/4BFHDtRhjz1TY4vq4ixUnBzYDUNGi0whnTlPRZyXEE1RTH/oZEBc7wH2Ff9Im6tlQc9B3RzZK8RNFRbqlrXDgamdY8mPcmBb7b5kwRWxU4hCQEP8BQPp8X82+xEE4WVbILrometlEVeWAu5qHwrRZ0o0XOzFCcXM486wpaTtaI0a1J1s90sN4wS8UCBf8EutZVaQX6dZE2ikERq8WDmEsfDW2SWpkTDRzU4AdCYwzXQR7kXZRn+I5RQ5KVfDTSO7Gsp9n7FWc1JLuN4nbgjnC42GRFgvFuEYDPTKLqya8b1d3hFYypji/HtasJ4acq6txQsiF6lsLuf6fX4SIKEd73gzT1wh8S4n1UFDtk+1DkVFX0s9HxyruPekCplgDnTZ6TeculyVGau0FtfsVUgY2+StZOYq+EIBhSiS/uLbdEBXRSJfKxXOvcO8h940qtHgpg7muaclFTVTyiQeuFdfdfQOpuvssZJAAUhSSRvgeeuq9lUaDRewzO3zZ0Q4DQ2XUjuIJ5z3caN25r1wARTOmEDs9mAzSuHDbKY=
+language: node_js
+node_js:
+- '7.6'
+os:
+- linux
+- osx
+script:
+- npm run eslint .
+- npm run build
