@@ -10,5 +10,5 @@ install:
 platform: x64
 test_script:
 - npm run eslint .
-- npm run -- build --publish onTag
+- npm run build
 version: '{build}'
