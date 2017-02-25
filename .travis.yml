@@ -17,4 +17,4 @@ os:
 - osx
 script:
 - npm run eslint .
-- npm run build
+- npm run -- build --publish onTag
