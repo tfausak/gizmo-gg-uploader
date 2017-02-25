@@ -4,17 +4,19 @@ const electron = require('electron');
 const path = require('path');
 const url = require('url');
 
-let window = null;
+let mainWindow = null;
 
 electron.app.on('ready', () => {
-  window = new electron.BrowserWindow();
-  window.loadURL(url.format({
+  mainWindow = new electron.BrowserWindow();
+
+  mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'app', 'index.html'),
     protocol: 'file:',
     slashes: true
   }));
-  window.on('closed', () => {
-    window = null;
+
+  mainWindow.on('closed', () => {
+    mainWindow = null;
   });
 });
 
