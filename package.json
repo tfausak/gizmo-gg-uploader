@@ -12,6 +12,7 @@
   "dependencies": {
     "chokidar": "1.6.1",
     "electron-updater": "1.7.1",
+    "mithril": "1.0.1",
     "request": "2.79.0"
   },
   "description": "Rocket League replay uploader",

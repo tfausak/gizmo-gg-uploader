@@ -5,6 +5,7 @@
 const chokidar = require('chokidar');
 const electron = require('electron');
 const fs = require('fs');
+const mithril = require('mithril');
 const os = require('os');
 const path = require('path');
 const request = require('request');
@@ -14,6 +15,7 @@ let replayDirectory = process.env.GIZMO_REPLAY_DIR;
 const replayPattern = /\.replay$/i;
 const gizmoUrl = process.env.GIZMO_API_URL || 'http://gizmo.gg/api/uploads';
 const expectedStatusCode = 303;
+const root = document.getElementById('root');
 
 if (!replayDirectory) {
   const home = os.homedir();
@@ -31,9 +33,19 @@ if (!replayDirectory) {
   }
 }
 
-document.title = `gizmo.gg uploader ${version}`;
+const state = {replays: []};
 
-const onRequestDone = (error, response, body) => {
+const Gizmo = {
+  view: () => [
+    mithril('h1', 'gizmo.gg uploader'),
+    mithril('ul', state.replays.map((file) => mithril('li', file)))
+  ]
+};
+
+document.title = `gizmo.gg uploader ${version}`;
+mithril.mount(root, Gizmo);
+
+const onRequestDone = (file) => (error, response, body) => {
   if (error) {
     console.error(error);
 
@@ -47,6 +59,8 @@ const onRequestDone = (error, response, body) => {
   }
 
   console.log(response, body);
+  state.replays.push(file);
+  mithril.redraw();
 };
 
 const onFileAdd = (file) => {
@@ -62,7 +76,7 @@ const onFileAdd = (file) => {
       }
     },
     url: gizmoUrl
-  }, onRequestDone);
+  }, onRequestDone(file));
 };
 
 chokidar.watch(replayDirectory, {ignoreInitial: true}).on('add', onFileAdd);
