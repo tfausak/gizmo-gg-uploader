@@ -7,6 +7,10 @@ const url = require('url');
 
 let mainWindow = null;
 
+updater.autoUpdater.on('update-downloaded', () => {
+  updater.autoUpdater.quitAndInstall();
+});
+
 electron.app.on('ready', () => {
   mainWindow = new electron.BrowserWindow();
 
@@ -19,13 +23,10 @@ electron.app.on('ready', () => {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
+  updater.autoUpdater.checkForUpdates();
 });
 
 electron.app.on('window-all-closed', () => {
   electron.app.quit();
 });
-
-updater.autoUpdater.on('update-downloaded', () => {
-  updater.autoUpdater.quitAndInstall();
-});
-updater.autoUpdater.checkForUpdates();
