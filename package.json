@@ -9,6 +9,9 @@
       }
     ]
   },
+  "dependencies": {
+    "electron-updater": "1.7.1"
+  },
   "description": "Rocket League replay uploader",
   "devDependencies": {
     "electron": "1.4.15",
