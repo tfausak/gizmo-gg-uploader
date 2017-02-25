@@ -7,6 +7,7 @@ addons:
 cache:
   directories:
   - node_modules
+dist: trusty
 env:
   secure: ACwifDWy95oz08ToOoJYWPy+xDxJNQlB7Ndmna0NjvkP45MfXa4JDOlPO0bRh1QU8HozrM1KqeeaSeZZjkI99m/e/SFfshWeqi3way7ubRFHGx6gS+HiL6WBMa+IyMNZin0wKAIbyjipQN0gahEoslGqrOzY3Wb/nkjCzWge2T/6NrfJNmve+kV/7DsxhhbabzLTrtsZDtvyYU589kVEpIn4+g9PwSzLFoglQaYA6hEliJpUu3MyNmDR+qyx/yBC0UZ7szCz6Wz9hnMsTVnPxYEPZYqY2DsWSq1S+6e4G8STYCgAl5SW78pChOgvKm8JpEd6kzZTillg8OK/Mtfh0RsZawZJm8HWCX2IW8S1S1sonQABnhTmHWz7dIKXD9KI2DqxAJ9YT/imH2/HMV78APszGqE3OLRFzCh+M1TnR1CzN9/o0bEkvyG9DrQrG8taYp0KSkOQN3e3Yhd0rCsixpDtLTwEgC1/NbaYhg0TAUm3zb1rDuDmkO+jLozRrS5oYHUYK5DSrmjWqbIpMJe9l3FDgHmBMuHCVl5uZ19ISjE7Kv7pWoH1UY3uC9XKZoynaQIOOMRVVGl0/6EpivCVlE2fK1CsYhsttD6+nDG2Zx/5qjFeukc0aQwhVXuIFxLEvKLegA0Tur1wmPEecSXdKV3zzev+zriAtcxsVEO0FQw=
 language: node_js
@@ -18,3 +19,4 @@ os:
 script:
 - npm run eslint .
 - npm run build
+sudo: false
