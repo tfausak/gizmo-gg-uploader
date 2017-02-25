@@ -38,8 +38,10 @@ const state = {replays: []};
 const Gizmo = {
   view: () => [
     mithril('h1', 'gizmo.gg uploader'),
-    mithril('ul', state.replays.map((replay) =>
-      mithril('li', `${replay.date} ${replay.file}`)))
+    mithril('ul', [].
+      concat(state.replays).
+      reverse().
+      map((replay) => mithril('li', `${replay.date} ${replay.file}`)))
   ]
 };
 
