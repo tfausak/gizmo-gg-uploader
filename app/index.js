@@ -38,7 +38,8 @@ const state = {replays: []};
 const Gizmo = {
   view: () => [
     mithril('h1', 'gizmo.gg uploader'),
-    mithril('ul', state.replays.map((file) => mithril('li', file)))
+    mithril('ul', state.replays.map((replay) =>
+      mithril('li', `${replay.date} ${replay.file}`)))
   ]
 };
 
@@ -59,7 +60,10 @@ const onRequestDone = (file) => (error, response, body) => {
   }
 
   console.log(response, body);
-  state.replays.push(file);
+  state.replays.push({
+    date: new Date(),
+    file
+  });
   mithril.redraw();
 };
 
