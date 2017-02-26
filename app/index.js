@@ -37,11 +37,26 @@ const state = {replays: []};
 
 const Gizmo = {
   view: () => [
-    mithril('h1', 'gizmo.gg uploader'),
-    mithril('ul', [].
+    mithril('h1', {class: 'header'}, [
+      mithril('a', {href: '#'}, 'gizmo.gg'),
+      ' uploader'
+    ]),
+    mithril('p', {class: 'watching'}, [
+      'Watching ',
+      mithril('code', replayDirectory),
+      '.'
+    ]),
+    mithril('ul', {class: 'replays'}, [].
       concat(state.replays).
       reverse().
-      map((replay) => mithril('li', `${replay.date} ${replay.file}`)))
+      map((replay) => mithril('li', {class: 'replay'}, [
+        mithril('p', {class: 'name'},
+          mithril('span', {title: `${replay.file}`},
+            path.basename(replay.file, '.replay'))),
+        mithril('p', {class: 'date'},
+        mithril('span', {title: `${replay.date}`},
+          replay.date.toLocaleString()))
+      ])))
   ]
 };
 
