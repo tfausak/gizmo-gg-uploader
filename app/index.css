@@ -1,4 +1,6 @@
 body {
+  background: #073642;
+  color: #ffffff;
   font: 20px/1.5 sans-serif;
   margin: 0 auto;
   max-width: 30em;
@@ -12,6 +14,7 @@ body {
 }
 
 .header a {
+  color: #268bd2;
   text-decoration: none;
 }
 
@@ -21,6 +24,7 @@ body {
 }
 
 .watching {
+  font-size: 16px;
   font-family: monospace;
   white-space: nowrap;
 }
