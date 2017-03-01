@@ -76,20 +76,15 @@ const Gizmo = {
 document.title = `gizmo.gg uploader ${version}`;
 mithril.mount(root, Gizmo);
 
-const onRequestDone = (file) => (error, response, body) => {
+const onRequestDone = (file) => (error, response) => {
   if (error) {
-    console.error(error);
-
     return;
   }
 
   if (response.statusCode !== 303) {
-    console.warn(response, body);
-
     return;
   }
 
-  console.log(response, body);
   state.replays.push({
     date: new Date(),
     file
@@ -108,7 +103,6 @@ const onFileAdd = (file) => {
 chokidar.watch(replayDirectory, {ignoreInitial: true}).on('add', onFileAdd);
 
 const processQueue = () => {
-  console.log(state.queue.length);
   const file = state.queue.shift();
 
   if (!file) {
