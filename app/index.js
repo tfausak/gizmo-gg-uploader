@@ -32,7 +32,10 @@ if (!replayDirectory) {
   }
 }
 
-const state = {replays: []};
+const state = {
+  queue: [],
+  replays: []
+};
 
 const pluralize = (number, word) => {
   if (number === 1) {
@@ -50,6 +53,8 @@ const Gizmo = {
     ]),
     mithril('p', {class: 'info'}, [
       'Watching ', mithril('span', {class: 'watching'}, replayDirectory), '.',
+      mithril('br'),
+      'Waiting to upload ', pluralize(state.queue.length, 'replay'), '.',
       mithril('br'),
       'Uploaded ', pluralize(state.replays.length, 'replay'), '.'
     ]),
@@ -97,6 +102,19 @@ const onFileAdd = (file) => {
     return;
   }
 
+  state.queue.push(file);
+};
+
+chokidar.watch(replayDirectory, {ignoreInitial: true}).on('add', onFileAdd);
+
+const processQueue = () => {
+  console.log(state.queue.length);
+  const file = state.queue.shift();
+
+  if (!file) {
+    return setTimeout(processQueue, 1000);
+  }
+
   request.post({
     formData: {
       replay: {
@@ -106,6 +124,8 @@ const onFileAdd = (file) => {
     },
     url: gizmoUrl
   }, onRequestDone(file));
+
+  return setTimeout(processQueue, 0);
 };
 
-chokidar.watch(replayDirectory, {ignoreInitial: true}).on('add', onFileAdd);
+processQueue();
