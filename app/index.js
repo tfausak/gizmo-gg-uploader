@@ -14,7 +14,6 @@ const version = electron.remote.app.getVersion();
 let replayDirectory = process.env.GIZMO_REPLAY_DIR;
 const replayPattern = /\.replay$/i;
 const gizmoUrl = process.env.GIZMO_API_URL || 'http://gizmo.gg/api/uploads';
-const expectedStatusCode = 303;
 const root = document.getElementById('root');
 
 if (!replayDirectory) {
@@ -35,16 +34,24 @@ if (!replayDirectory) {
 
 const state = {replays: []};
 
+const pluralize = (number, word) => {
+  if (number === 1) {
+    return `${number} ${word}`;
+  }
+
+  return `${number} ${word}s`;
+};
+
 const Gizmo = {
   view: () => [
     mithril('h1', {class: 'header'}, [
       mithril('a', {href: '#'}, 'gizmo.gg'),
       ' uploader'
     ]),
-    mithril('p', {class: 'watching'}, [
-      'Watching ',
-      mithril('code', replayDirectory),
-      '.'
+    mithril('p', {class: 'info'}, [
+      'Watching ', mithril('span', {class: 'watching'}, replayDirectory), '.',
+      mithril('br'),
+      'Uploaded ', pluralize(state.replays.length, 'replay'), '.'
     ]),
     mithril('ul', {class: 'replays'}, [].
       concat(state.replays).
@@ -70,7 +77,7 @@ const onRequestDone = (file) => (error, response, body) => {
     return;
   }
 
-  if (response.statusCode !== expectedStatusCode) {
+  if (response.statusCode !== 303) {
     console.warn(response, body);
 
     return;

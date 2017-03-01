@@ -15,9 +15,14 @@ body {
   text-decoration: none;
 }
 
-.watching {
+.info {
   margin: 0;
   text-align: center;
+}
+
+.watching {
+  font-family: monospace;
+  white-space: nowrap;
 }
 
 .replays {

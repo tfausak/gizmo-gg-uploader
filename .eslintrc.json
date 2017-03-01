@@ -10,6 +10,7 @@
     "brace-style": ["error", "1tbs"],
     "indent": ["error", 2],
     "no-console": "off",
+    "no-magic-numbers": "off",
     "no-process-env": "off",
     "one-var": ["error", "never"],
     "padded-blocks": ["error", "never"],
