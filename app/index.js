@@ -76,28 +76,10 @@ const Gizmo = {
 document.title = `gizmo.gg uploader ${version}`;
 mithril.mount(root, Gizmo);
 
-const onRequestDone = (file) => (error, response) => {
-  if (error) {
-    return;
-  }
-
-  if (response.statusCode !== 303) {
-    return;
-  }
-
-  state.replays.push({
-    date: new Date(),
-    file
-  });
-  mithril.redraw();
-};
-
 const onFileAdd = (file) => {
-  if (!replayPattern.test(file)) {
-    return;
+  if (replayPattern.test(file)) {
+    state.queue.push(file);
   }
-
-  state.queue.push(file);
 };
 
 chokidar.watch(replayDirectory, {ignoreInitial: true}).on('add', onFileAdd);
@@ -106,9 +88,12 @@ const processQueue = () => {
   const file = state.queue.shift();
 
   if (!file) {
-    return setTimeout(processQueue, 1000);
+    setTimeout(processQueue, 1000);
+
+    return;
   }
 
+  mithril.redraw();
   request.post({
     formData: {
       replay: {
@@ -117,9 +102,22 @@ const processQueue = () => {
       }
     },
     url: gizmoUrl
-  }, onRequestDone(file));
+  }, (error, response) => {
+    setTimeout(processQueue, 10);
+    if (error) {
+      return;
+    }
 
-  return setTimeout(processQueue, 0);
+    if (response.statusCode !== 303) {
+      return;
+    }
+
+    state.replays.push({
+      date: new Date(),
+      file
+    });
+    mithril.redraw();
+  });
 };
 
 processQueue();
