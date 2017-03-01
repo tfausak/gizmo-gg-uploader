@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "chokidar": "1.6.1",
-    "electron-updater": "1.7.1",
+    "electron-updater": "1.8.1",
     "mithril": "1.0.1",
     "request": "2.79.0"
   },
   "description": "Rocket League replay uploader",
   "devDependencies": {
     "electron": "1.4.15",
-    "electron-builder": "14.4.0",
+    "electron-builder": "14.5.3",
     "eslint": "3.16.1"
   },
   "license": "MIT",
