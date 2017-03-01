@@ -53,8 +53,9 @@ const Gizmo = {
       mithril('br'),
       'Uploaded ', pluralize(state.replays.length, 'replay'), '.'
     ]),
-    mithril('ul', {class: 'replays'}, [].
-      concat(state.replays).
+    mithril('ul', {class: 'replays'}, state.
+      replays.
+      slice(-3).
       reverse().
       map((replay) => mithril('li', {class: 'replay'}, [
         mithril('p', {class: 'name'},
