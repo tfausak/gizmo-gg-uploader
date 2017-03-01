@@ -15,6 +15,7 @@ body {
 
 .header a {
   color: #268bd2;
+  cursor: pointer;
   text-decoration: none;
 }
 

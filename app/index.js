@@ -48,7 +48,9 @@ const pluralize = (number, word) => {
 const Gizmo = {
   view: () => [
     mithril('h1', {class: 'header'}, [
-      mithril('a', {href: '#'}, 'gizmo.gg'),
+      mithril('a',
+        {onclick: () => electron.shell.openExternal('http://gizmo.gg')},
+        'gizmo.gg'),
       ' uploader'
     ]),
     mithril('p', {class: 'info'}, [
